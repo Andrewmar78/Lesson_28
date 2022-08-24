@@ -18,15 +18,27 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from ads import views
+from ads.views.service import root
+from ads.views import ad as ads_view
+from ads.views import category as cat_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.root),
-    path('cat/', views.CategoryView.as_view()),
-    path('cat/<int:pk>', views.CategoryDetailView.as_view()),
-    path('ad/', views.AdView.as_view()),
-    path('ad/<int:pk>', views.AdDetailView.as_view()),
+    path('', root),
+
+    path('cat/', cat_view.CategoryListView.as_view()),
+    path('cat/<int:pk>', cat_view.CategoryDetailView.as_view()),
+    path('cat/create/', cat_view.CategoryCreateView.as_view()),
+    path('cat/<int:pk>/update/', cat_view.CategoryUpdateView.as_view()),
+    path('cat/<int:pk>/delete/', cat_view.CategoryDeleteView.as_view()),
+
+
+    path('ad/', ads_view.AdListView.as_view()),
+    path('ad/<int:pk>', ads_view.AdDetailView.as_view()),
+    path('ad/create/', ads_view.AdCreateView.as_view()),
+    path('ad/<int:pk>/update/', ads_view.AdUpdateView.as_view()),
+    path('ad/<int:pk>/delete/', ads_view.AdDeleteView.as_view()),
+    path('ad/<int:pk>/upload_image/', ads_view.AdUploadImageView.as_view()),
 ]
 
 if settings.DEBUG:

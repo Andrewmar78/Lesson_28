@@ -16,7 +16,6 @@ class Location(models.Model):
 
 class User(models.Model):
 
-
     class Role(models.TextChoices):
         ADMIN = "admin", "Администратор"
         MODERATOR = "moderator", "Модератор"
@@ -40,6 +39,7 @@ class User(models.Model):
 
 
 class Category(models.Model):
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=30)
 
     class Meta:
@@ -58,7 +58,6 @@ class Ad(models.Model):
     is_published = models.BooleanField(default=False)
     image = models.ImageField(upload_to="ads", null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-
 
     class Meta:
         verbose_name = "Объявление"
