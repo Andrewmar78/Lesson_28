@@ -42,9 +42,7 @@ class CategoryCreateView(CreateView):
 
     def post(self, request, *args, **kwargs):
         category_data = json.loads(request.body)
-        category = Category.objects.create(
-                    name=category_data["name"],
-        )
+        category = Category.objects.create(name=category_data["name"],)
 
         return JsonResponse(
             {

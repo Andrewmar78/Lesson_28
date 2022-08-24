@@ -5,7 +5,6 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
-from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
@@ -67,7 +66,6 @@ class AdDetailView(DetailView):
         )
 
 
-
 @method_decorator(csrf_exempt, name='dispatch')
 class AdCreateView(CreateView):
     model = Ad
@@ -78,7 +76,7 @@ class AdCreateView(CreateView):
 
         ad = Ad.objects.create(
             name=ad_data["name"],
-            author = get_object_or_404(User, pk=ad_data["author_id"]),
+            author=get_object_or_404(User, pk=ad_data["author_id"]),
             price=ad_data["price"],
             description=ad_data["description"],
             is_published=ad_data["is_published"],

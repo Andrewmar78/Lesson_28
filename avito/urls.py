@@ -21,6 +21,7 @@ from django.urls import path
 from ads.views.service import root
 from ads.views import ad as ads_view
 from ads.views import category as cat_view
+from ads.views import user as users_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,6 +40,13 @@ urlpatterns = [
     path('ad/<int:pk>/update/', ads_view.AdUpdateView.as_view()),
     path('ad/<int:pk>/delete/', ads_view.AdDeleteView.as_view()),
     path('ad/<int:pk>/upload_image/', ads_view.AdUploadImageView.as_view()),
+
+    path('user/', users_view.UserListView.as_view()),
+    path('user/<int:pk>', users_view.UserDetailView.as_view()),
+    path('user/create/', users_view.UserCreateView.as_view()),
+    path('user/<int:pk>/update/', users_view.UserUpdateView.as_view()),
+    path('user/<int:pk>/delete/', users_view.UserDeleteView.as_view()),
+
 ]
 
 if settings.DEBUG:
